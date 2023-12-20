@@ -1,0 +1,54 @@
+[project]
+name = "export-scn"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "wep21", email = "daisuke.nishimatsu1021@gmail.com" }
+]
+dependencies = [
+    "mmdet3d>=1.3.0",
+    "torch>=2.1.0",
+    "mmcv==2.1.0",
+    "mmdet>=3.2.0",
+    "click>=8.1.7",
+    "onnx>=1.15.0",
+    "onnx_graphsurgeon>=0.0.1.dev5",
+    "onnxsim>=0.4.35",
+    "onnxruntime>=1.16.3",
+    "spconv>=2.3.6",
+    "spconv-cu120>=2.3.6",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "ruff>=0.1.4",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[[tool.rye.sources]]
+name = "mmcv"
+url = "https://download.openmmlab.com/mmcv/dist/cu121/torch2.1/index.html"
+type = "find-links"
+
+[project.scripts]
+export_scn = 'export_scn.export_scn:main'
+gen_wts = 'export_scn.gen_wts:main'
+
+[tool.ruff]
+select = [
+    "F",  # Pyflakes
+    "E",  # pycodestyle error
+    "W",  # pycodestyle warning
+    "I",  # isort
+    "B",  # flake8-bugbear
+]
+
